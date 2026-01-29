@@ -1,0 +1,1 @@
+# To store basic information related to player and welcome them
