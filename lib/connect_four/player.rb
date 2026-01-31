@@ -3,5 +3,3 @@ module Player
     "Welcome\nPerson to go first is Player_one(Red) and person to go second is Player_two(Yellow)"
   end
 end
-
-puts Player.welcome
