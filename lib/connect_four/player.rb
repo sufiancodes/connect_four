@@ -1,14 +1,7 @@
-# To store basic information related to player and welcome them
-# 
-class Player
-  attr_accessor :player_one, :player_two
-  def initialize
-    @player_one = player_one
-    @player_two = player_two
+module Player
+  def self.welcome
+    "Welcome\nPerson to go first is Player_one(Red) and person to go second is Player_two(Yellow)"
   end
-
-  def welcome
-    "Welcome #{player_one} and #{player_two}"
-  end
-  
 end
+
+puts Player.welcome
