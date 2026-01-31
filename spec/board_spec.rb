@@ -5,7 +5,7 @@ describe Board do
   it 'Has Board Class' do
     expect(board).to be_kind_of(Board)
   end
-  it 'Render View' do
+  it "Render's View" do
     board_layout = [
       %w[a1 a2 a3 a4 a5 a6 a7],
       %w[b1 b2 b3 b4 b5 b6 b7],
@@ -18,13 +18,3 @@ describe Board do
     expect(result).to eq(board_layout)
   end
 end
-
-# 6 rows and 7 column
-# a 1 2 3 4 5 6 7
-# b
-# C
-# d
-# e
-# f
-#
-#
