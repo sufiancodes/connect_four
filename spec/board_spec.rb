@@ -1,11 +1,10 @@
 require_relative '../lib/connect_four/board'
 
-describe Board do
+describe Board do # rubocop:disable Metrics/BlockLength
   let(:board) { Board.new }
   it 'Has Board Class' do
     expect(board).to be_kind_of(Board)
   end
-  it "Render's View" do
   it "Render's View" do
     board_layout = [
       %w[a1 a2 a3 a4 a5 a6 a7],
@@ -18,7 +17,6 @@ describe Board do
     result = board.render_view
     expect(result).to eq(board_layout)
   end
-  # Next I want ability to manipulate this view on demand
   it "manipulate's view on demand" do
     expected_board_layout = [
       %w[🟡 a2 a3 a4 a5 a6 a7],

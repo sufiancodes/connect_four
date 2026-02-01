@@ -18,13 +18,10 @@ class Board
   end
 
   def change_view(position, marker)
-    board_layout.each do |array|
-      array.each_with_index do |potion, index|
-        p potion
-        p index
+    board_layout.each_with_index do |outer_array, index_of_outer_array|
+      outer_array.each_with_index do |inner_array, index_of_inner_array|
+        board_layout[index_of_outer_array][index_of_inner_array] = marker if inner_array == position
       end
     end
   end
 end
-cl = Board.new
-cl.change_view('a1', "🟡")
