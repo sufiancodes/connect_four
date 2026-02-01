@@ -6,6 +6,7 @@ describe Board do
     expect(board).to be_kind_of(Board)
   end
   it "Render's View" do
+  it "Render's View" do
     board_layout = [
       %w[a1 a2 a3 a4 a5 a6 a7],
       %w[b1 b2 b3 b4 b5 b6 b7],
