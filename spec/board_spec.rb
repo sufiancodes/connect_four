@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../lib/connect_four/board'
 
 describe Board do # rubocop:disable Metrics/BlockLength
@@ -28,5 +30,9 @@ describe Board do # rubocop:disable Metrics/BlockLength
     ]
     result = board.change_view('a1', '🟡')
     expect(result).to eq(expected_board_layout)
+  end
+  it "return's true when four are connected horizontally" do
+    result = board.check_horizontal_connection
+    expect(result).to be true
   end
 end
