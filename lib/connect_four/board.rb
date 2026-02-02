@@ -1,5 +1,6 @@
-# File to all the logic related to board
-class Board
+# frozen_string_literal: true
+
+class Board # rubocop:disable Style/Documentation
   attr_accessor :board_layout
 
   def initialize
@@ -23,5 +24,16 @@ class Board
         board_layout[index_of_outer_array][index_of_inner_array] = marker if inner_array == position
       end
     end
+  end
+
+  def check_horizontal_connection
+    board_layout.each do |value|
+      value.each_with_index do |_inner_value, index|
+        if value[index] == value [index + 1] && value[index + 2] == value[index] && value[index + 3] == value[index]
+          return true
+        end
+      end
+    end
+    false
   end
 end
