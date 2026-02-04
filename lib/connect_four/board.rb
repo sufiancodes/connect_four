@@ -36,4 +36,20 @@ class Board # rubocop:disable Style/Documentation
     end
     false
   end
+
+  def check_vertical_connection
+    # there will be same 🟡 value after every 7 moves
+    rotated_board = board_layout.transpose
+    rotated_board.each do |value|
+      value.each_with_index do |_inner_value, index|
+        if value[index] == value [index + 1] && value[index + 2] == value[index] && value[index + 3] == value[index]
+          return true
+        end
+      end
+    end
+    false
+  end
 end
+cl = Board.new
+p cl.check_vertical_connection
+
