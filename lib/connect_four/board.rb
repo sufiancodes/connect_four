@@ -53,7 +53,7 @@ class Board # rubocop:disable Style/Documentation
   def check_primary_diagonal
     flat_board = board_layout.flatten
     flat_board.each_with_index do |element, index|
-      if flat_board[index] == flat_board[index + 8] && flat_board[index] == flat_board[index + 8 + 8] && flat_board[index] == flat_board[index + 8 + 8 + 8]
+      if flat_board[index] == flat_board[index + 8] && flat_board[index] == flat_board[index + 16] && flat_board[index] == flat_board[index + 24]
         return true
       end
     end
@@ -61,6 +61,13 @@ class Board # rubocop:disable Style/Documentation
   end
 
   def check_secondary_diagonal
+    flat_board = board_layout.flatten
+    flat_board.each_with_index do |element, index|
+      if flat_board[index] == flat_board[index + 6] && flat_board[index] == flat_board[index + 12] && flat_board[index] == flat_board[index + 18]
+        return true
+      end
+    end
+    false
   end
 end
 # cl = Board.new
@@ -97,14 +104,6 @@ end
 # end
 # pp a
 # p Array.new(4) { |e| e + 1 }
-# board_layout = [
-#   %w[🟡 a2 a3 a4 a5 a6 a7],
-#   %w[b1 🟡 b3 b4 b5 b6 b7],
-#   %w[c1 c2 🟡 c4 c5 c6 c7],
-#   %w[d1 d2 d3 🟡 d5 d6 d7],
-#   %w[e1 e2 e3 e4 e5 e6 e7],
-#   %w[f1 f2 f3 f4 f5 f6 f7]
-# ]
 # pp board_layout
 
 # pp a
