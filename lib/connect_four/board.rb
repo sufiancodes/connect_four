@@ -59,6 +59,9 @@ class Board # rubocop:disable Style/Documentation
     end
     false
   end
+
+  def check_secondary_diagonal
+  end
 end
 # cl = Board.new
 # p cl.check_vertical_connection
