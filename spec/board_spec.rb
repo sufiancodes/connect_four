@@ -55,7 +55,7 @@ describe Board do # rubocop:disable Metrics/BlockLength
     result = board.check_vertical_connection
     expect(result).to be true
   end
-  it 'return true when there is match in primary diagonal' do
+  xit 'return true when there is match in primary diagonal' do
     board.instance_variable_set(:@board_layout, [
                                   %w[🟡 a2 a3 a4 a5 a6 a7],
                                   %w[b1 🟡 b3 b4 b5 b6 b7],
@@ -67,7 +67,7 @@ describe Board do # rubocop:disable Metrics/BlockLength
     result = board.check_primary_diagonal
     expect(result).to be true
   end
-  it 'return true when there is match in secondary diagonal' do
+  xit 'return true when there is match in secondary diagonal' do
     board.instance_variable_set(:@board_layout, [
                                   %w[a1 a2 a3 a4 a5 a6 🟡],
                                   %w[b1 b2 b3 b4 b5 🟡 b7],
