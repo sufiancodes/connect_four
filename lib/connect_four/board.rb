@@ -29,26 +29,24 @@ class Board # rubocop:disable Style/Documentation
   def check_horizontal_connection
     board_layout.each do |row|
       row.each_cons(4) do |elements|
-        return true if elements.uniq.size == 1
+        return true if elements.uniq.size == 1 && !elements.first.nil?
       end
     end
     false
   end
 
   def check_vertical_connection
-    # there will be same 🟡 value after every 7 moves
     rotated_board = board_layout.transpose
-    rotated_board.each do |value|
-      value.each_with_index do |_inner_value, index|
-        if value[index] == value [index + 1] && value[index + 2] == value[index] && value[index + 3] == value[index]
-          return true
-        end
+    rotated_board.each do |row|
+      row.each_cons(4) do |elements|
+        return true if elements.uniq.size == 1 && !elements.first.nil?
       end
     end
     false
   end
 
   def check_primary_diagonal
+
   end
 
   def check_secondary_diagonal
@@ -73,3 +71,4 @@ board_layout = [
   %w[e1 e2 e3 e4 e5 e6 e7],
   %w[f1 f2 f3 f4 f5 f6 f7]
 ]
+
