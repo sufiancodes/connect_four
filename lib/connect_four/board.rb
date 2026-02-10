@@ -27,26 +27,14 @@ class Board # rubocop:disable Style/Documentation
   end
 
   def check_horizontal_connection
-    board_layout.each do |row|
-      row.each_cons(4) do |elements|
-        return true if elements.uniq.size == 1 && !elements.first.nil?
-      end
-    end
-    false
+    board_layout.any? { |row| check_match?(row) }
   end
 
   def check_vertical_connection
-    rotated_board = board_layout.transpose
-    rotated_board.each do |row|
-      row.each_cons(4) do |elements|
-        return true if elements.uniq.size == 1 && !elements.first.nil?
-      end
-    end
-    false
+    board_layout.transpose.any? { |row| check_match?(row) }
   end
 
   def check_primary_diagonal
-
   end
 
   def check_secondary_diagonal
@@ -58,13 +46,19 @@ class Board # rubocop:disable Style/Documentation
     end
     false
   end
+
+  private
+
+  def check_match?(row)
+    row.each_cons(4).any? { |element| element.uniq.size == 1 && !element.first.nil? }
+  end
 end
 
 board = Board.new
-p board.check_horizontal_connection
+p board.check_vertical_connection
 
 board_layout = [
-  %w[🟡 🟡 🟡 22 a5 a6 a7],
+  %w[🟡 🟡 🟡 a a5 a6 a7],
   %w[b1 b2 b3 b4 b5 b6 b7],
   %w[c1 c2 c3 c4 c5 c6 c7],
   %w[d1 d2 d3 d4 d5 d6 d7],
