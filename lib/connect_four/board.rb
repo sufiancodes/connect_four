@@ -34,14 +34,11 @@ class Board # rubocop:disable Style/Documentation
     board_layout.transpose.any? { |row| check_match?(row) }
   end
 
-  def check_primary_diagonal # rubocop:disable Metrics/AbcSize
-    board_layout.each_with_index do |row, index|
-      row.each_with_index do |element, index_of_inner_array|
-        next if board_layout[index + 1].nil?
-
-        if element == board_layout[index + 1][index_of_inner_array + 1] && element == board_layout[index + 2][index_of_inner_array + 2] && element == board_layout[index + 3][index_of_inner_array + 3] # rubocop:disable Layout/LineLength
-          return true
-        end
+  def check_primary_diagonal
+    board_layout.each_with_index do |row, i|
+      row.each_with_index do |token, j|
+        next unless board_layout[i + 1]
+        return true if check_consecutive_diagonal_tokens?(i, j, token)
       end
     end
     false
@@ -54,6 +51,9 @@ class Board # rubocop:disable Style/Documentation
 
   def check_match?(row)
     row.each_cons(4).any? { |element| element.uniq.size == 1 && !element.first.nil? }
+  end
+
+  def check_consecutive_diagonal_tokens?(row, col, token)
   end
 end
 
