@@ -37,7 +37,7 @@ class Board # rubocop:disable Style/Documentation
   def check_primary_diagonal
     board_layout.take(3).each_with_index do |row, i|
       row.take(4).each_with_index do |token, j|
-        return true if consecutive_diagonal_tokens?(i, j, token)
+        return true if consecutive_diagonal_tokens?(i, j, token, board_layout)
       end
     end
     false
@@ -58,10 +58,11 @@ class Board # rubocop:disable Style/Documentation
     row.each_cons(4).any? { |element| element.uniq.size == 1 && !element.first.nil? }
   end
 
-  def consecutive_diagonal_tokens?(row, col, token, board_layout = @board_layout)
+  def consecutive_diagonal_tokens?(row, col, token, board_layout)
     consecutive_tokens = (1..3).map { board_layout[row + it][col + it] }
     consecutive_tokens.all? { it == token }
   end
 end
 
 board = Board.new
+p board.check_secondary_diagonal
