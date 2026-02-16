@@ -52,6 +52,21 @@ class Board # rubocop:disable Style/Documentation
     false
   end
 
+  def apply_gravity
+    board_layout.take(5).each_with_index do |row, i|
+      row.each_with_index do |token, j|
+        if token == '🔴' && board_layout[i + 1][j] != '🟡' && board_layout[i + 1][j] != '🔴'
+          board_layout[i + 1][j] = token
+          board_layout[i][j] = "\u2686"
+        elsif token == '🟡' && board_layout[i + 1][j] != '🟡' && board_layout[i + 1][j] != '🔴'
+          board_layout[i + 1][j] = token
+          board_layout[i][j] = "\u2686"
+        end
+      end
+    end
+    board_layout
+  end
+
   private
 
   def check_match?(row)
@@ -65,4 +80,3 @@ class Board # rubocop:disable Style/Documentation
 end
 
 board = Board.new
-p board.check_secondary_diagonal
