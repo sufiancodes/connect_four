@@ -19,9 +19,9 @@ class Board # rubocop:disable Style/Documentation
   end
 
   def change_view(position, marker)
-    board_layout.each_with_index do |outer_array, index_of_outer_array|
-      outer_array.each_with_index do |inner_array, index_of_inner_array|
-        board_layout[index_of_outer_array][index_of_inner_array] = marker if inner_array == position
+    board_layout.each_with_index do |row, i|
+      row.each_with_index do |slot, j|
+        board_layout[i][j] = marker if slot == position
       end
     end
   end
