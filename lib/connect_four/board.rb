@@ -55,19 +55,28 @@ class Board # rubocop:disable Style/Documentation
   def apply_gravity
     board_layout.take(5).each_with_index do |row, i|
       row.each_with_index do |token, j|
-        if token == '🔴' && board_layout[i + 1][j] != '🟡' && board_layout[i + 1][j] != '🔴'
-          board_layout[i + 1][j] = token
-          board_layout[i][j] = "\u2686"
-        elsif token == '🟡' && board_layout[i + 1][j] != '🟡' && board_layout[i + 1][j] != '🔴'
-          board_layout[i + 1][j] = token
-          board_layout[i][j] = "\u2686"
-        end
+        bring_down_red_token(token, i, j)
+        bring_down_yellow_token(token, i, j)
       end
     end
     board_layout
   end
 
   private
+
+  def bring_down_red_token(token, i, j)
+    return unless token == '🔴' && board_layout[i + 1][j] != '🟡' && board_layout[i + 1][j] != '🔴'
+
+    board_layout[i + 1][j] = token
+    board_layout[i][j] = "\u2686"
+  end
+
+  def bring_down_yellow_token(token, i, j)
+    return unless token == '🟡' && board_layout[i + 1][j] != '🟡' && board_layout[i + 1][j] != '🔴'
+
+    board_layout[i + 1][j] = token
+    board_layout[i][j] = "\u2686"
+  end
 
   def check_match?(row)
     row.each_cons(4).any? { |element| element.uniq.size == 1 && !element.first.nil? }
