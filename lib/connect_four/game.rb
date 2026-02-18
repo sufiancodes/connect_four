@@ -1,1 +1,3 @@
-# this file is for having core game logic
+class Game
+  
+end
