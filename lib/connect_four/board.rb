@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Board # rubocop:disable Style/Documentation
-  attr_accessor :board_layout
 
   EMPTY_TOKEN = "\u25ef"
   WHITE_TOKEN = "\e[37m\u23FA\e[0m"
@@ -21,4 +20,3 @@ class Board # rubocop:disable Style/Documentation
 end
 
 board = Board.new
-puts board

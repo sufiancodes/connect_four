@@ -6,4 +6,3 @@ source "https://rubygems.org"
 
 gem "rubocop-shopify", "~> 2.18"
 
-gem "colorize", "~> 1.1"
