@@ -11,9 +11,14 @@ class Board # rubocop:disable Style/Documentation
   NUMBER_OF_COLUMN = 7
 
   def initialize
-    @board_layout = Array.new(6){Array.new(7){EMPTY_TOKEN}}
+    @board_layout = Array.new(6) { Array.new(7) { EMPTY_TOKEN } }
+  end
+
+  def to_s
+    col_nums = "\n#{(0...NUMBER_OF_COLUMN).map(&:to_s).join(' ')}\n"
+    @board_layout.map { it.join(' ') }.join("\n") + col_nums
   end
 end
 
 board = Board.new
-pp board.board_layout
+puts board
