@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Board # rubocop:disable Style/Documentation
+  attr_accessor :board_layout
 
   EMPTY_TOKEN = "\u25ef"
   WHITE_TOKEN = "\e[37m\u23FA\e[0m"
@@ -17,6 +18,11 @@ class Board # rubocop:disable Style/Documentation
     col_nums = "\n#{(0...NUMBER_OF_COLUMN).map(&:to_s).join(' ')}\n"
     @board_layout.map { it.join(' ') }.join("\n") + col_nums
   end
+
+  def column_at(index)
+    board_layout.transpose[index]
+  end
 end
 
 board = Board.new
+board.column_at(0)
