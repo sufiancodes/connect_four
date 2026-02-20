@@ -12,4 +12,9 @@ describe Board do
     result = board.to_s
     expect(result).to eq(expected)
   end
+  it 'return the array of tokens at column index 1' do
+    expected = Array.new(Board::NUMBER_OF_ROWS) {Board::EMPTY_TOKEN}
+    result = board.column_at(1)
+    expect(result).to eq(expected)
+  end
 end
