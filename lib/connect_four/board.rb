@@ -26,10 +26,12 @@ class Board # rubocop:disable Style/Documentation
   def next_empty_slot(col_index)
     column = column_at(col_index)
     i = 0
-    column[i + 1] until column[i] == EMPTY_TOKEN && i <= 6
-    column[i]
+    i += 1 while i <= 6 && column[i] == EMPTY_TOKEN
+    i
   end
 end
 w = "\e[37m\u23FA\e[0m"
 
 board = Board.new
+puts board.next_empty_slot(1)
+# puts board
