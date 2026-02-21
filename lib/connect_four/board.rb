@@ -22,7 +22,14 @@ class Board # rubocop:disable Style/Documentation
   def column_at(index)
     board_layout.transpose[index]
   end
+
+  def next_empty_slot(col_index)
+    column = column_at(col_index)
+    i = 0
+    column[i + 1] until column[i] == EMPTY_TOKEN && i <= 6
+    column[i]
+  end
 end
+w = "\e[37m\u23FA\e[0m"
 
 board = Board.new
-board.column_at(0)
