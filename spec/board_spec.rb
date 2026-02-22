@@ -17,15 +17,14 @@ describe Board do
     result = board.column_at(1)
     expect(result).to eq(expected)
   end
-  it 'return the next empty slot at column index 1' do
+  it 'return the index of next empty slot at column index 1' do
     board.instance_variable_set(:@board_layout, [['◯', '◯', '◯', '◯', '◯', '◯', '◯'],
                                                  ['◯', '◯', '◯', '◯', '◯', '◯', '◯'],
                                                  ['◯', '◯', '◯', '◯', '◯', '◯', '◯'],
                                                  ['◯', '⏺', '◯', '◯', '◯', '◯', '◯'],
                                                  ['◯', '⏺', '◯', '◯', '◯', '◯', '◯'],
                                                  ['◯', '⏺', '◯', '◯', '◯', '◯', '◯']])
-    expected = board.board_layout[2][1]
     result = board.next_empty_slot(1)
-    expect(result).to eq(expected)
+    expect(result).to eq(2)
   end
 end
