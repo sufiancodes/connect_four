@@ -37,4 +37,12 @@ describe Board do
     board.drop_token(1, '⏺')
     expect(board.board_layout).to eq(expected_board_layout)
   end
+  it "return's true when four are connected horizontally" do
+    board.drop_token(1, Board::WHITE_TOKEN)
+    board.drop_token(2, Board::WHITE_TOKEN)
+    board.drop_token(3, Board::WHITE_TOKEN)
+    board.drop_token(4, Board::WHITE_TOKEN)
+    result = board.four_in_row?
+    expect(result).to be true
+  end
 end
