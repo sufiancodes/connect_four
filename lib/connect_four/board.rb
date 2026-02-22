@@ -34,4 +34,31 @@ class Board # rubocop:disable Style/Documentation
     row = next_empty_slot(column)
     board_layout[row][column] = token
   end
+
+  def four_in_row?
+    i = 5
+    while i >= 0
+      return true if check_match?(board_layout[i])
+
+      i -= 1
+    end
+    false
+  end
+
+  private
+
+  def check_match?(row)
+    row.each_with_index do |token, index|
+      return true if row[index, 4].all?(RED_TOKEN)
+      return true if row[index, 4].all?(WHITE_TOKEN)
+    end
+    false
+  end
 end
+board = Board.new
+board.drop_token(1, Board::WHITE_TOKEN)
+board.drop_token(2, Board::WHITE_TOKEN)
+board.drop_token(3, Board::WHITE_TOKEN)
+board.drop_token(4, Board::WHITE_TOKEN)
+puts board
+puts board.four_in_row?
