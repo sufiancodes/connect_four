@@ -27,11 +27,11 @@ class Board # rubocop:disable Style/Documentation
     column = column_at(col_index)
     i = 0
     i += 1 while i <= 6 && column[i] == EMPTY_TOKEN
-    i
+    i - 1
+  end
+
+  def drop_token(column, token)
+    row = next_empty_slot(column)
+    board_layout[row][column] = token
   end
 end
-w = "\e[37m\u23FA\e[0m"
-
-board = Board.new
-puts board.next_empty_slot(1)
-# puts board
