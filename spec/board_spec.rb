@@ -18,12 +18,9 @@ describe Board do
     expect(result).to eq(expected)
   end
   it 'return the index of next empty slot at column index 1' do
-    board.instance_variable_set(:@board_layout, [['◯', '◯', '◯', '◯', '◯', '◯', '◯'],
-                                                 ['◯', '◯', '◯', '◯', '◯', '◯', '◯'],
-                                                 ['◯', '◯', '◯', '◯', '◯', '◯', '◯'],
-                                                 ['◯', '⏺', '◯', '◯', '◯', '◯', '◯'],
-                                                 ['◯', '⏺', '◯', '◯', '◯', '◯', '◯'],
-                                                 ['◯', '⏺', '◯', '◯', '◯', '◯', '◯']])
+    board.drop_token(1, Board::RED_TOKEN)
+    board.drop_token(1, Board::RED_TOKEN)
+    board.drop_token(1, Board::RED_TOKEN)
     result = board.next_empty_slot(1)
     expect(result).to eq(2)
   end
@@ -37,12 +34,20 @@ describe Board do
     board.drop_token(1, '⏺')
     expect(board.board_layout).to eq(expected_board_layout)
   end
-  it "return's true when four are connected horizontally" do
+  it 'return true when four are connected horizontally' do
     board.drop_token(1, Board::WHITE_TOKEN)
     board.drop_token(2, Board::WHITE_TOKEN)
     board.drop_token(3, Board::WHITE_TOKEN)
     board.drop_token(4, Board::WHITE_TOKEN)
     result = board.four_in_row?
+    expect(result).to be true
+  end
+  it 'return true when four are connected in column' do
+    board.drop_token(1, Board::WHITE_TOKEN)
+    board.drop_token(1, Board::WHITE_TOKEN)
+    board.drop_token(1, Board::WHITE_TOKEN)
+    board.drop_token(1, Board::WHITE_TOKEN)
+    result = board.four_in_column?
     expect(result).to be true
   end
 end
