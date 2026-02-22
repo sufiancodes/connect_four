@@ -27,4 +27,14 @@ describe Board do
     result = board.next_empty_slot(1)
     expect(result).to eq(2)
   end
+  it 'drop token at the column 1' do
+    expected_board_layout = [['◯', '◯', '◯', '◯', '◯', '◯', '◯'],
+                             ['◯', '◯', '◯', '◯', '◯', '◯', '◯'],
+                             ['◯', '◯', '◯', '◯', '◯', '◯', '◯'],
+                             ['◯', '◯', '◯', '◯', '◯', '◯', '◯'],
+                             ['◯', '◯', '◯', '◯', '◯', '◯', '◯'],
+                             ['◯', '⏺', '◯', '◯', '◯', '◯', '◯']]
+    board.drop_token(1, '⏺')
+    expect(board.board_layout).to eq(expected_board_layout)
+  end
 end
