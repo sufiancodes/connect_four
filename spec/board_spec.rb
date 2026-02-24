@@ -50,4 +50,18 @@ describe Board do
     result = board.four_in_column?
     expect(result).to be true
   end
+  it 'return true when match in primary diagonal' do
+    board.drop_token(0, Board::RED_TOKEN)
+    board.drop_token(1, Board::RED_TOKEN)
+    board.drop_token(2, Board::WHITE_TOKEN)
+    board.drop_token(3, Board::WHITE_TOKEN)
+    board.drop_token(0, Board::WHITE_TOKEN)
+    board.drop_token(0, Board::WHITE_TOKEN)
+    board.drop_token(0, Board::WHITE_TOKEN)
+    board.drop_token(1, Board::WHITE_TOKEN)
+    board.drop_token(2, Board::WHITE_TOKEN)
+    board.drop_token(1, Board::WHITE_TOKEN)
+    result = board.primary_diagonal?
+    expect(result).to be true
+  end
 end
