@@ -15,8 +15,8 @@ class Board # rubocop:disable Style/Documentation
   end
 
   def to_s
-    col_nums = "\n#{(0...NUMBER_OF_COLUMN).map(&:to_s).join(' ')}\n"
-    @board_layout.map { it.join(' ') }.join("\n") + col_nums
+    col_numb = "\n#{(0...NUMBER_OF_COLUMN).map(&:to_s).join(' ')}\n"
+    @board_layout.map { it.join(' ') }.join("\n") + col_numb
   end
 
   def column_at(index)
@@ -36,23 +36,19 @@ class Board # rubocop:disable Style/Documentation
   end
 
   def four_in_row?
-    i = 5
-    while i >= 0
-      return true if check_match?(board_layout[i])
+    board_layout.any? { check_match(it) }
+  end
 
-      i -= 1
-    end
-    false
+  def four_in_column?
+    board_layout.transpose.any? { check_match(it) }
   end
 
   private
 
-  def check_match?(row)
-    row.each_with_index do |token, index|
-      return true if row[index, 4].all?(RED_TOKEN)
-      return true if row[index, 4].all?(WHITE_TOKEN)
+  def check_match(row)
+    row.each_cons(4).any? do |slice|
+      slice.all?(RED_TOKEN) || slice.all?(WHITE_TOKEN)
     end
-    false
   end
 end
 board = Board.new
@@ -61,4 +57,5 @@ board.drop_token(2, Board::WHITE_TOKEN)
 board.drop_token(3, Board::WHITE_TOKEN)
 board.drop_token(4, Board::WHITE_TOKEN)
 puts board
+puts board.four_in_column?
 puts board.four_in_row?
