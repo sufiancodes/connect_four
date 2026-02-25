@@ -52,7 +52,7 @@ class Board # rubocop:disable Style/Documentation
     false
   end
 
-  def check_secondary_diagonal?
+  def secondary_diagonal?
     board_layout.reverse.take(3).each_with_index do |row, i|
       row.take(4).each_with_index do |token, j|
         return true if consecutive_diagonal_tokens?(i, j, token, board_layout.reverse)
@@ -74,20 +74,3 @@ class Board # rubocop:disable Style/Documentation
     consecutive_tokens.all? { [WHITE_TOKEN, RED_TOKEN].include?(it) }
   end
 end
-board = Board.new
-board.drop_token(3, Board::RED_TOKEN)
-board.drop_token(4, Board::WHITE_TOKEN)
-board.drop_token(5, Board::WHITE_TOKEN)
-board.drop_token(6, Board::WHITE_TOKEN)
-board.drop_token(4, Board::RED_TOKEN)
-board.drop_token(5, Board::WHITE_TOKEN)
-board.drop_token(6, Board::WHITE_TOKEN)
-board.drop_token(5, Board::RED_TOKEN)
-board.drop_token(6, Board::WHITE_TOKEN)
-board.drop_token(6, Board::RED_TOKEN)
-
-puts board
-puts board.four_in_column?
-puts board.four_in_row?
-puts board.primary_diagonal?
-puts board.check_secondary_diagonal?
