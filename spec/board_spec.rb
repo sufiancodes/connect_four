@@ -64,4 +64,18 @@ describe Board do
     result = board.primary_diagonal?
     expect(result).to be true
   end
+  it 'return true when match in secondary diagonal' do
+    board.drop_token(3, Board::RED_TOKEN)
+    board.drop_token(4, Board::WHITE_TOKEN)
+    board.drop_token(5, Board::WHITE_TOKEN)
+    board.drop_token(6, Board::WHITE_TOKEN)
+    board.drop_token(4, Board::RED_TOKEN)
+    board.drop_token(5, Board::WHITE_TOKEN)
+    board.drop_token(6, Board::WHITE_TOKEN)
+    board.drop_token(5, Board::RED_TOKEN)
+    board.drop_token(6, Board::WHITE_TOKEN)
+    board.drop_token(6, Board::RED_TOKEN)
+    result = board.secondary_diagonal?
+    expect(result).to be true
+  end
 end
