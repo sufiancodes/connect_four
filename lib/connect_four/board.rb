@@ -43,6 +43,15 @@ class Board # rubocop:disable Style/Documentation
     board_layout.transpose.any? { check_match(it) }
   end
 
+  def primary_diagonal?
+    board_layout.take(3).each_with_index do |row, i|
+      row.take(4).each_with_index do |token, j|
+        return true if consecutive_diagonal_tokens?(i, j, token, board_layout)
+      end
+    end
+    false
+  end
+
   private
 
   def check_match(row)
@@ -50,12 +59,27 @@ class Board # rubocop:disable Style/Documentation
       slice.all?(RED_TOKEN) || slice.all?(WHITE_TOKEN)
     end
   end
+
+  def consecutive_diagonal_tokens?(row, col, token, board_layout)
+    consecutive_tokens = (1..3).map { board_layout[row + it][col + it] }
+    consecutive_tokens.all? { [WHITE_TOKEN, RED_TOKEN].include?(it)}
+  end
 end
 board = Board.new
-board.drop_token(1, Board::WHITE_TOKEN)
+board.drop_token(0, Board::RED_TOKEN)
+board.drop_token(1, Board::RED_TOKEN)
 board.drop_token(2, Board::WHITE_TOKEN)
 board.drop_token(3, Board::WHITE_TOKEN)
-board.drop_token(4, Board::WHITE_TOKEN)
+board.drop_token(0, Board::WHITE_TOKEN)
+board.drop_token(0, Board::WHITE_TOKEN)
+board.drop_token(0, Board::WHITE_TOKEN)
+board.drop_token(1, Board::WHITE_TOKEN)
+# board.drop_token(2, Board::WHITE_TOKEN)
+board.drop_token(1, Board::WHITE_TOKEN)
+
+
 puts board
 puts board.four_in_column?
 puts board.four_in_row?
+
+puts board.primary_diagonal?
