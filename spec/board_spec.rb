@@ -66,19 +66,26 @@ describe Board do
       expect(result).to be true
     end
   end
-  it 'return true when match in primary diagonal' do
-    board.drop_token(0, Board::RED_TOKEN)
-    board.drop_token(1, Board::RED_TOKEN)
-    board.drop_token(2, Board::WHITE_TOKEN)
-    board.drop_token(3, Board::WHITE_TOKEN)
-    board.drop_token(0, Board::WHITE_TOKEN)
-    board.drop_token(0, Board::WHITE_TOKEN)
-    board.drop_token(0, Board::WHITE_TOKEN)
-    board.drop_token(1, Board::WHITE_TOKEN)
-    board.drop_token(2, Board::WHITE_TOKEN)
-    board.drop_token(1, Board::WHITE_TOKEN)
-    result = board.primary_diagonal?
-    expect(result).to be true
+
+  context 'In primary Diagonal' do
+    it 'return true when match in primary diagonal' do
+      board.drop_token(0, Board::RED_TOKEN)
+      board.drop_token(1, Board::RED_TOKEN)
+      board.drop_token(2, Board::WHITE_TOKEN)
+      board.drop_token(3, Board::WHITE_TOKEN)
+      board.drop_token(0, Board::WHITE_TOKEN)
+      board.drop_token(0, Board::WHITE_TOKEN)
+      board.drop_token(0, Board::WHITE_TOKEN)
+      board.drop_token(1, Board::WHITE_TOKEN)
+      board.drop_token(2, Board::WHITE_TOKEN)
+      board.drop_token(1, Board::WHITE_TOKEN)
+      result = board.primary_diagonal?
+      expect(result).to be true
+    end
+    it 'return false when no match in primary diagonal' do
+      result = board.primary_diagonal?
+      expect(result).to be false
+    end
   end
   it 'return true when match in secondary diagonal' do
     board.drop_token(3, Board::RED_TOKEN)
