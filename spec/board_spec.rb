@@ -36,18 +36,25 @@ describe Board do
       expect(board.board_layout).to eq(expected_board_layout)
     end
   end
-  it 'return true when four are connected horizontally' do
-    board.drop_token(1, Board::WHITE_TOKEN)
-    board.drop_token(2, Board::WHITE_TOKEN)
-    board.drop_token(3, Board::WHITE_TOKEN)
-    board.drop_token(4, Board::WHITE_TOKEN)
-    result = board.four_in_row?
-    expect(result).to be true
-  end
 
   context 'In horizontal match' do
+    it 'return true when four are connected horizontally' do
+      board.drop_token(1, Board::WHITE_TOKEN)
+      board.drop_token(2, Board::WHITE_TOKEN)
+      board.drop_token(3, Board::WHITE_TOKEN)
+      board.drop_token(4, Board::WHITE_TOKEN)
+      result = board.four_in_row?
+      expect(result).to be true
+    end
     it 'return false when there is no match of four horizontally' do
       result = board.four_in_row?
+      expect(result).to be false
+    end
+  end
+
+  context 'In Vertical match' do
+    it 'return false when there is no match of four in column' do
+      result = board.four_in_column?
       expect(result).to be false
     end
     it 'return true when four are connected in column' do
