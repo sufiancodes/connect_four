@@ -12,33 +12,40 @@ describe Board do
     result = board.to_s
     expect(result).to eq(expected)
   end
-  it 'return the array of tokens at column index 1' do
-    expected = Array.new(Board::NUMBER_OF_ROWS) { Board::EMPTY_TOKEN }
-    result = board.column_at(1)
-    expect(result).to eq(expected)
-  end
-  it 'return the index of next empty slot at column index 1' do
-    board.drop_token(1, Board::RED_TOKEN)
-    board.drop_token(1, Board::RED_TOKEN)
-    board.drop_token(1, Board::RED_TOKEN)
-    result = board.next_empty_slot(1)
-    expect(result).to eq(2)
-  end
-  it 'drop token at the column 1' do
-    expected_board_layout = [['◯', '◯', '◯', '◯', '◯', '◯', '◯'],
-                             ['◯', '◯', '◯', '◯', '◯', '◯', '◯'],
-                             ['◯', '◯', '◯', '◯', '◯', '◯', '◯'],
-                             ['◯', '◯', '◯', '◯', '◯', '◯', '◯'],
-                             ['◯', '◯', '◯', '◯', '◯', '◯', '◯'],
-                             ['◯', '⏺', '◯', '◯', '◯', '◯', '◯']]
-    board.drop_token(1, '⏺')
-    expect(board.board_layout).to eq(expected_board_layout)
+  context 'For dropping tokens' do
+    it 'return the array of tokens at column index 1' do
+      expected = Array.new(Board::NUMBER_OF_ROWS) { Board::EMPTY_TOKEN }
+      result = board.column_at(1)
+      expect(result).to eq(expected)
+    end
+    it 'return the index of next empty slot at column index 1' do
+      board.drop_token(1, Board::RED_TOKEN)
+      board.drop_token(1, Board::RED_TOKEN)
+      board.drop_token(1, Board::RED_TOKEN)
+      result = board.next_empty_slot(1)
+      expect(result).to eq(2)
+    end
+    it 'drop token at the column 1' do
+      expected_board_layout = [['◯', '◯', '◯', '◯', '◯', '◯', '◯'],
+                               ['◯', '◯', '◯', '◯', '◯', '◯', '◯'],
+                               ['◯', '◯', '◯', '◯', '◯', '◯', '◯'],
+                               ['◯', '◯', '◯', '◯', '◯', '◯', '◯'],
+                               ['◯', '◯', '◯', '◯', '◯', '◯', '◯'],
+                               ['◯', '⏺', '◯', '◯', '◯', '◯', '◯']]
+      board.drop_token(1, '⏺')
+      expect(board.board_layout).to eq(expected_board_layout)
+    end
   end
   it 'return true when four are connected horizontally' do
     board.drop_token(1, Board::WHITE_TOKEN)
     board.drop_token(2, Board::WHITE_TOKEN)
     board.drop_token(3, Board::WHITE_TOKEN)
     board.drop_token(4, Board::WHITE_TOKEN)
+    result = board.four_in_row?
+    expect(result).to be true
+  end
+
+  it 'return false when there is no match of four horizontally' do
     result = board.four_in_row?
     expect(result).to be true
   end
