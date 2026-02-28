@@ -1,13 +1,21 @@
 require_relative '../lib/connect_four/game'
 
 describe Game do
-  let(:game) {Game.new}
-  let(:board) {instance_double 'Board'}
+  let(:board) { instance_double 'Board' }
+
+  let(:game) { Game.new(board) }
   it 'Has the Game class' do
     expect(game).to be_kind_of(Game)
   end
-  it 'return true when game is over' do
-    allow(board).to receive(:four_in_row?).and_return(true)
-    expect(game.over?).to eq(true)
+  context 'In case of Game over' do
+    it 'return true when the match in row' do
+      allow(board).to receive(:four_in_row?).and_return(true)
+      expect(game.over?).to eq(true)
+    end
+    it 'return true when match in column' do
+      allow(board).to receive(:four_in_row?).and_return(false)
+      allow(board).to receive(:four_in_column?).and_return(true)
+      expect(game.over?).to eq(true)
+    end
   end
 end
