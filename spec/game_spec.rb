@@ -17,5 +17,18 @@ describe Game do
       allow(board).to receive(:four_in_column?).and_return(true)
       expect(game.over?).to eq(true)
     end
+    it 'return true when match in primary diagonal' do
+      allow(board).to receive(:four_in_row?).and_return(false)
+      allow(board).to receive(:four_in_column?).and_return(false)
+      allow(board).to receive(:primary_diagonal?).and_return(true)
+      expect(game.over?).to eq(true)
+    end
+    it 'return true when match in secondary diagonal' do
+      allow(board).to receive(:four_in_row?).and_return(false)
+      allow(board).to receive(:four_in_column?).and_return(false)
+      allow(board).to receive(:primary_diagonal?).and_return(false)
+      allow(board).to receive(:primary_diagonal?).and_return(true)
+      expect(game.over?).to eq(true)
+    end
   end
 end
