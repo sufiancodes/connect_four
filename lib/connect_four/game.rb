@@ -1,5 +1,10 @@
+# frozen_string_literal: true
+
 require_relative 'board'
+require_relative 'player'
 class Game
+  attr_reader :board
+
   def initialize(board = Board.new)
     @current_player = nil
     @board = board
@@ -13,3 +18,5 @@ class Game
     false
   end
 end
+
+game = Game.new
