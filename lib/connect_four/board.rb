@@ -69,8 +69,8 @@ class Board # rubocop:disable Style/Documentation
     end
   end
 
-  def consecutive_diagonal_tokens?(row, col, token, board_layout)
-    consecutive_tokens = (1..3).map { board_layout[row + it][col + it] }
-    consecutive_tokens.all? { [WHITE_TOKEN, RED_TOKEN].include?(it) }
+  def consecutive_diagonal_tokens?(row, col, _token, layout)
+    slice = (0..3).map { |i| layout[row + i][col + i] }
+    slice.uniq.length == 1 && [WHITE_TOKEN, RED_TOKEN].include?(slice[0])
   end
 end
