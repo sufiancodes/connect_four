@@ -25,4 +25,16 @@ describe Player do
     player.turn = 1
     expect(player.current_name).to eq('Alexa')
   end
+
+  it 'switches turn from 0 to 1 (switch!)' do
+    player.turn = 0
+    player.switch!
+    expect(player.turn).to eq(1)
+  end
+
+  it 'switches turn from 1 to 0 (switch!)' do
+    player.turn = 1
+    player.switch!
+    expect(player.turn).to eq(0)
+  end
 end
